@@ -1,4 +1,4 @@
 ### Build Docker Image
 ```
-docker build -t centos_gf . --no-cache
+docker build -t php72 . --no-cache
 ```
