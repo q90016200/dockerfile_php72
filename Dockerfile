@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER q90016200 <q90016200@gmail.com> php7.2
+MAINTAINER q90016200 <q90016200@gmail.com> php7.2 nginx
 
 # zsh
 RUN yum install git -y
@@ -18,8 +18,8 @@ RUN yum install wget vim -y
 
 
 # nginx
-# RUN yum install nginx -y
-# RUN systemctl enable nginx
+RUN yum install nginx -y
+RUN systemctl enable nginx
 
 # PHP
 RUN yum install php72w-fpm php72w-opcache php72w-pecl-mongodb php72w-mysqlnd php72w-curl php72w-mcrypt php72w-xml php72w-pecl-redis php72w-pecl-memcached php72w-gd php72w-mbstring php72w-bcmath ntpdate unzip -y
@@ -30,6 +30,10 @@ RUN sed -i 's/short_open_tag\ =\ Off/short_open_tag\ =\ On/g' /etc/php.ini
 RUN sed -i 's/max_execution_time\ =\ 30/max_execution_time\ =\ 600/g' /etc/php.ini
 RUN sed -i 's/post_max_size\ =\ 8M/post_max_size\ =\ 128M/g' /etc/php.ini
 RUN sed -i 's/upload_max_filesize\ =\ 2M/upload_max_filesize\ =\ 128M/g' /etc/php.ini
+
+# 開放 php session
+RUN mkdir /var/lib/php/session
+RUN chmod -R 777 /var/lib/php/session
 
 RUN systemctl enable php-fpm
 
