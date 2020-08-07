@@ -3,7 +3,7 @@ LABEL Description="php7.4 nginx" VENDOR="q90016200 <q90016200@gmail.com>"
 
 
 # install common tools
-RUN yum install git wget vim ntpdate unzip go openssl -y
+RUN yum install git wget vim ntpdate unzip openssl -y
 
 # zsh
 RUN yum install zsh -y
@@ -14,6 +14,9 @@ RUN yum install epel-release -y
 RUN yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 
 RUN yum update -y && yum install yum-utils -y
+
+# install common tools 2
+RUN yum install go -y
 
 # install nginx
 RUN yum install nginx -y
