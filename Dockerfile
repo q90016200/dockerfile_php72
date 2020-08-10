@@ -46,8 +46,5 @@ RUN systemctl enable php-fpm
 # install composer
 RUN yum install composer -y
 
-# time zone setting
-RUN timedatectl set-timezone Asia/Taipei
-
 # 網路校時
 RUN ntpdate time.stdtime.gov.tw
