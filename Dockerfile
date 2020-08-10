@@ -16,7 +16,7 @@ RUN yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 RUN yum update -y && yum install yum-utils -y
 
 # install common tools 2
-RUN yum install go -y
+RUN yum install go initscripts -y
 
 # install nginx
 RUN yum install nginx -y
@@ -45,3 +45,9 @@ RUN systemctl enable php-fpm
 
 # install composer
 RUN yum install composer -y
+
+# time zone setting
+RUN timedatectl set-timezone Asia/Taipei
+
+# 網路校時
+RUN ntpdate time.stdtime.gov.tw
